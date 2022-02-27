@@ -1,0 +1,17 @@
+branches:
+  only:
+  - main
+  - dev
+  - /^issue-\d+$/
+language: python
+python:
+  - "3.6"
+install:
+  - pip install -r requirements.txt
+script:
+  - buildozer android debug
+import:
+  - source: .travis/main.yml
+    if: branch = main
+  - source: .travis/dev.yml
+    if: branch = dev
